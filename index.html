@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Binary Arithmatical Caculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="icofont.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-color:  #2026b2;
+        }
+        .container{
+            width: 40%;
+            height: 40vh;
+            position: absolute;
+            top: 25%;
+            left: 30%;
+            background-color: #64ffda;
+        }
+        #res {
+            background: black;
+            width: 90%;
+            height: 40px;
+            font-size: 20px;
+            color: rgb(255, 0, 0);
+            text-align: center;
+            margin-top: 40px;
+            margin-left: 30px;
+        }
+        #btns {
+            width: 90%;
+            text-align: center width: 40%;
+            height: 36px;
+            font-size: 18px;
+        }
+        .upper {
+            display: inline;
+            position: relative;
+            top: 170%;
+            left: 5%;
+            padding: 20px;
+        }
+        .button {
+            background: white;
+            color: black;
+            display: inline;
+            width: 22%;
+            height: 36px;
+            font-size: 18px;
+        }
+        .lower {
+            display: inline;
+            position: relative;
+            padding: 20px;
+            top: 370%;
+            left: 5%;
+        }
+        .operator {
+            background: black;
+            color: white;
+            height: 36px;
+            width: 22%;
+            font-size: 18px;
+        }
+        @media screen and (max-width: 425px) {
+            .container{
+                width: 100%;
+                left: 0%;
+            }
+            .upper {
+                left: 9%;
+                padding: 0px;
+            }
+            .lower {
+                padding: 0px;
+                top: 370%;
+                left: 9%;
+           }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="result">
+            <div id="res" maxlength="8">
+        </div>
+        <div id="btns" class="btn">
+            <div class="upper">
+                <button class="button" id="btn0" onclick="key('0')">0</button>
+                <button class="button" id="btn1" onclick="key('1')">1</button>
+                <button class="button" id="btnClr" onclick="cl()">Clr</button>
+                <button class="button" id="btnEql" onclick="operatorFunction()">=</button>
+            </div>
+            <div class="lower">
+                <button id="btnSum" class="operator" onclick="key('+')">
+                        +</button>
+                <button id="btnSub" class="operator" onclick="key('-')">
+                        -</button>
+                <button id="btnMul" class="operator" onclick="key('*')">
+                        *</button>
+                <button id="btnDiv" class="operator" onclick="key('/')">
+                        /</button>
+            </div>
+        </div>       
+    </div>
+    <script>
+        var screen = "";
+        function operatorFunction() {
+        if (screen.indexOf("+") != -1) {
+            var numbers = screen.split("+");
+            var x = parseInt(numbers[0], 2);
+            var y = parseInt(numbers[1], 2);
+            var sum = x + y;
+            var ans = sum.toString(2);
+        } else if (screen.indexOf("-") != -1) {
+            var numbers = screen.split("-");
+            var x = parseInt(numbers[0], 2);
+            var y = parseInt(numbers[1], 2);
+            var sub = x - y;
+            var ans = sub.toString(2);
+        } else if (screen.indexOf("*") != -1) {
+            var numbers = screen.split("*");
+            var x = parseInt(numbers[0], 2);
+            var y = parseInt(numbers[1], 2);
+            var mul = x * y;
+            var ans = mul.toString(2);
+        } else if (screen.indexOf("/") != -1) {
+            var numbers = screen.split("/");
+            var x = parseInt(numbers[0], 2);
+            var y = parseInt(numbers[1], 2);
+            var div = x / y;
+            var ans = div.toString(2);
+        }
+        screen = ans;    document.getElementById("res").innerHTML = screen;
+        }
+        function key(a) {
+        screen += a;     document.getElementById("res").innerHTML = screen;
+        }
+        function cl() {
+        screen = "";     document.getElementById("res").innerHTML = screen;
+        };
+    </script>
+	
+</body>
+</html>
